@@ -1,0 +1,111 @@
+package com.demo;
+
+/*
+CREATE TABLE Hotel (
+    HotelID SERIAL PRIMARY KEY,
+    ChainID INT NOT NULL,
+    Name VARCHAR(255) NOT NULL,
+    Address TEXT NOT NULL,
+    ContactEmail VARCHAR(255),
+    ContactPhone VARCHAR(20),
+    Category INT CHECK (Category BETWEEN 1 AND 5),
+    NumberOfRooms INT DEFAULT 0,
+    FOREIGN KEY (ChainID) REFERENCES HotelChain(ChainID) ON DELETE CASCADE
+);
+ */
+public class Hotel {
+
+    private Integer hotelID;
+    private Integer chainID;
+    private String name;
+    private String address;
+    private String contactEmail;
+    private String contactPhone;
+    private Integer category;
+    private Integer numberOfRooms;
+
+    public Hotel(Integer hotelID, Integer chainID, String name, String address, String contactEmail, String contactPhone, Integer category, Integer numberOfRooms) {
+        this.hotelID = hotelID;
+        this.chainID = chainID;
+        this.name = name;
+        this.address = address;
+        this.contactEmail = contactEmail;
+        this.contactPhone = contactPhone;
+        this.category = category;
+        this.numberOfRooms = numberOfRooms;
+    }
+
+    public Hotel(Integer chainID, String name, String address, String contactEmail, String contactPhone, Integer category, Integer numberOfRooms) {
+        this.chainID = chainID;
+        this.name = name;
+        this.address = address;
+        this.contactEmail = contactEmail;
+        this.contactPhone = contactPhone;
+        this.category = category;
+        this.numberOfRooms = numberOfRooms;
+    }
+
+    public void setHotelID(Integer hotelID) {
+        this.hotelID = hotelID;
+    }
+
+    public void setChainID(Integer chainID) {
+        this.chainID = chainID;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
+
+    public void setNumberOfRooms(Integer numberOfRooms) {
+        this.numberOfRooms = numberOfRooms;
+    }
+
+    public Integer getHotelID() {
+        return hotelID;
+    }
+
+    public Integer getChainID() {
+        return chainID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public Integer getNumberOfRooms() {
+        return numberOfRooms;
+    }
+}
