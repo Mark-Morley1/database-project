@@ -29,6 +29,7 @@ public class HotelConnection {
                         rs.getString("address"),
                         rs.getString("contactEmail"),
                         rs.getString("contactPhone"),
+                        rs.getString("area"),
                         rs.getInt("category"),
                         rs.getInt("numberOfRooms")
                 );
