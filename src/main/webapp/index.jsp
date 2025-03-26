@@ -7,7 +7,9 @@
 <%@ page import="com.demo.HotelChainConnection" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <%
+
     ArrayList<Message> messages;
 
     // get any incoming messages from session attribute named messages
@@ -27,10 +29,10 @@
     session.setAttribute("messages", new ArrayList<Message>());
 
     // retrieve grades from database
-    HotelChainConnection gradeService = new HotelChainConnection();
-    List<HotelChain> grades = null;
+    HotelChainConnection hotelChainConnectionService = new HotelChainConnection();
+    List<HotelChain> hotels = null;
     try {
-        grades = gradeService.getHotelChains();
+        hotels = hotelChainConnectionService.getHotelChains();
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -42,7 +44,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title> Grades Page </title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -51,51 +52,46 @@
 
 <body>
 
+
+
 <jsp:include page="navbar.jsp"/>
 
-<input type="hidden" name="message" id="message" value='<%=msgField%>' >
-<div class="container">
-    <div class="row" id="row">
-        <div class="col-md-12">
-            <div class="card" id="card-container">
-                <div class="card-body" id="card">
-                    <% if (grades.size() == 0) { %>
-                    <h1 style="margin-top: 5rem;">No Grades found!</h1>
-                    <% } else { %>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Hotel Name</th>
-                                <th>Address</th>
-                                <th>Number of Hotels</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <%
-                                for (HotelChain grade : grades) { %>
-                            <tr>
-                                <td><%= grade.getChainID() %></td>
-                                <td><%= grade.getName() %></td>
-                                <td><%= grade.getCentralOfficeAddress() %></td>
-                                <td><%= grade.getNumberOfHotels() %></td>
-                                <td><%= grade.getContactEmail() %></td>
-                                <td><%= grade.getContactPhone() %></td>
-                            </tr>
-                            <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-                    <% } %>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<form action="hotelChain.jsp" method="post">
+    <label for="bookingStartDate">Booking Start Date:</label><br>
+    <input type="date" id="bookingStartDate" name="bookingStartDate" required><br><br>
+
+    <label for="bookingEndDate">Booking End Date:</label><br>
+    <input type="date" id="bookingEndDate" name="bookingEndDate" required><br><br>
+
+    <label for="roomCapacity">Hotel Capacity:</label><br>
+    <input type="text" id="roomCapacity" name="roomCapacity" ><br><br>
+
+    <label for="hotelArea">Hotel Area:</label><br>
+    <input type="text" id="hotelArea" name="hotelArea" ><br><br>
+
+    <label for="hotelChain">Hotel Chain:</label><br>
+    <input type="text" id="hotelChain" name="hotelChain" ><br><br>
+
+    <label for="hotelRating">Hotel Rating:</label><br>
+
+    <select id="hotelRating" name="hotelRating">
+        <option value="1Star">1 Star</option>
+        <option value="2Star">2 Star</option>
+        <option value="3Star">3 Star</option>
+        <option value="4Star">4 Star</option>
+        <option value="4Star">5 Star</option>
+    </select><br><br>
+
+    <label for="numberOfRooms">Number Of Rooms:</label><br>
+    <input type="text" id="numberOfRooms" name="numberOfRooms" ><br><br>
+
+    <label for="hotelPrice">Hotel Price:</label><br>
+    <input type="text" id="hotelPrice" name="hotelPrice" ><br><br>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
 
 <script src="/assets/js/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
