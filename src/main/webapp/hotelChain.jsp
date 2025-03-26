@@ -62,9 +62,9 @@
     //filter the lists of hotels
 
 
-    if(hotels != null){
+    if(rooms != null){
 
-        for(Hotel hotel: hotels){
+        for(Room room: rooms){
 
 
 
@@ -81,10 +81,11 @@
         <div class="col-md-12">
             <div class="card" id="card-container">
                 <div class="card-body" id="card">
-                    <% if (hotels != null && hotels.size() == 0) { %>
+                    <% if (hotels == null || hotels.size() == 0) { %>
                     <h1 style="margin-top: 5rem;">No Hotels found!</h1>
                     <% } else { %>
                     <!--<h1 style="margin-top: 5rem;"><bookingStartDate%></h1>-->
+                    <!--**Print the hotels here**-->
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
