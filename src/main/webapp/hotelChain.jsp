@@ -81,7 +81,7 @@
         <div class="col-md-12">
             <div class="card" id="card-container">
                 <div class="card-body" id="card">
-                    <% if (hotels.size() == 0) { %>
+                    <% if (hotels != null && hotels.size() == 0) { %>
                     <h1 style="margin-top: 5rem;">No Hotels found!</h1>
                     <% } else { %>
                     <!--<h1 style="margin-top: 5rem;"><bookingStartDate%></h1>-->
@@ -101,7 +101,7 @@
                             </thead>
                             <tbody>
                             <%
-                                for (HotelChain hotel : hotels) { %>
+                                for (HotelChain hotel : hotelChainList) { %>
 
                             <tr>
                                 <td><%= hotel.getChainID() %></td>
@@ -116,7 +116,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <% } %>
+                    <%} %>
                 </div>
             </div>
         </div>
