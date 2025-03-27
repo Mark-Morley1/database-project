@@ -1,14 +1,16 @@
 package com.demo;
+import org.postgresql.util.PSQLException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 public class BookingConnection {
 
     // Method to create a booking in the "booking" table.
-    public void createBooking(Integer customerID, Integer roomID, String startdate, String enddate) {
+    public boolean createBooking(Integer customerID, Integer roomID, String startdate, String enddate) {
         String status = "Booked";
-        System.out.println("sqlInsert");
         String sqlInsert = "INSERT INTO booking (bookingID, customerID, roomid, startDate, endDate, status) VALUES (?, ?, ?, ?, ?, ?)";
         String sqlMax = "SELECT COALESCE(MAX(bookingID), 0) AS maxId FROM booking";
 
@@ -28,8 +30,8 @@ public class BookingConnection {
             // Now, insert the new booking with the new bookingID
             try (PreparedStatement pstmt = con.prepareStatement(sqlInsert)) {
                 pstmt.setInt(1, newBookingID);
-                pstmt.setInt(2, customerID);
-                pstmt.setInt(3, roomID);
+                pstmt.setInt(2, roomID);
+                pstmt.setInt(3, customerID);
 
                 java.sql.Date sqlStartDate = java.sql.Date.valueOf(startdate); // format must be yyyy-MM-dd
                 java.sql.Date sqlEndDate = java.sql.Date.valueOf(enddate);
@@ -45,7 +47,11 @@ public class BookingConnection {
                 }
             }
         } catch (Exception e) {
+            //The room is already saved in booking violates the unique booking constraint
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
+
 }

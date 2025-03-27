@@ -1,9 +1,6 @@
 <%@ page import="com.demo.HotelChainConnection" %>
-<%@ page import="com.demo.HotelChain" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.demo.Message" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.demo.HotelChain" %>
 <%@ page import="com.demo.HotelChainConnection" %>
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
@@ -314,6 +311,23 @@
     });
 </script>
 
+
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Hotel Booking</a>
+        <div class="d-flex">
+            <form action="viewBookingCustomer.jsp" method="get">
+                <input type="hidden" name="customerID" value="<%= session.getAttribute("customerID") %>">
+                <button type="submit" class="btn btn-light">View Bookings</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
 </body>
 </html>
+
+

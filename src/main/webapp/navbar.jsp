@@ -34,6 +34,7 @@
     .container-fluid {
       justify-content: center; /* Centers the brand */
     }
+
   </style>
 </head>
 <body>
@@ -46,7 +47,5 @@
   </div>
 </nav>
 
-<!-- Include Bootstrap JS (optional if you don't need dropdowns/toggles) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
