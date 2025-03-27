@@ -16,7 +16,7 @@ CREATE TABLE Hotel (
                        Address TEXT NOT NULL,
                        ContactEmail VARCHAR(255),
                        ContactPhone VARCHAR(20),
-                       Rating INT CHECK (Category BETWEEN 1 AND 5),
+                       Rating INT CHECK (Rating BETWEEN 1 AND 5),
                        NumberOfRooms INT DEFAULT 0,
                        Area VARCHAR(255) NOT NULL,
                        FOREIGN KEY (ChainID) REFERENCES HotelChain(ChainID) ON DELETE CASCADE
@@ -121,60 +121,69 @@ VALUES
 
 INSERT INTO Room (HotelID, Price, Capacity, View, Extendable, Amenities, DamageDescription) VALUES
                                                                                                 -- Rooms for Hotel 69
-                                                                                                (69, 120.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', NULL),
-                                                                                                (69, 150.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
-                                                                                                (69, 200.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', NULL),
-                                                                                                (69, 130.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', NULL),
-                                                                                                (69, 180.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
+                                                                                                (1, 120.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', NULL),
+                                                                                                (1, 150.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
+                                                                                                (1, 200.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', NULL),
+                                                                                                (1, 130.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', NULL),
+                                                                                                (1, 180.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
 
                                                                                                 -- Rooms for Hotel 70
-                                                                                                (70, 110.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
-                                                                                                (70, 140.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
-                                                                                                (70, 190.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', NULL),
-                                                                                                (70, 125.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
-                                                                                                (70, 175.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
+                                                                                                (2, 110.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
+                                                                                                (2, 140.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
+                                                                                                (2, 190.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', NULL),
+                                                                                                (2, 125.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
+                                                                                                (2, 175.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
 
                                                                                                 -- Rooms for Hotel 71
-                                                                                                (71, 100.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', 'Scratched Desk'),
-                                                                                                (71, 130.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
-                                                                                                (71, 210.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', NULL),
-                                                                                                (71, 140.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', 'Broken Lamp'),
-                                                                                                (71, 170.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
+                                                                                                (3, 100.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', 'Scratched Desk'),
+                                                                                                (3, 130.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
+                                                                                                (3, 210.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', NULL),
+                                                                                                (3, 140.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', 'Broken Lamp'),
+                                                                                                (3, 170.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
 
                                                                                                 -- Rooms for Hotel 72
-                                                                                                (72, 125.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
-                                                                                                (72, 135.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
-                                                                                                (72, 220.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', 'Cracked Window'),
-                                                                                                (72, 145.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
-                                                                                                (72, 160.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
+                                                                                                (4, 125.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
+                                                                                                (4, 135.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
+                                                                                                (4, 220.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', 'Cracked Window'),
+                                                                                                (4, 145.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
+                                                                                                (4, 160.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
 
                                                                                                 -- Rooms for Hotel 73
-                                                                                                (73, 105.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', NULL),
-                                                                                                (73, 145.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
-                                                                                                (73, 230.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', 'Loose Door Handle'),
-                                                                                                (73, 135.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', NULL),
-                                                                                                (73, 185.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
+                                                                                                (5, 105.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', NULL),
+                                                                                                (5, 145.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
+                                                                                                (5, 230.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', 'Loose Door Handle'),
+                                                                                                (5, 135.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', NULL),
+                                                                                                (5, 185.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
 
                                                                                                 -- Rooms for Hotel 74
-                                                                                                (74, 95.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
-                                                                                                (74, 155.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
-                                                                                                (74, 240.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', NULL),
-                                                                                                (74, 115.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
-                                                                                                (74, 195.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
+                                                                                                (6, 95.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
+                                                                                                (6, 155.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
+                                                                                                (6, 240.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', NULL),
+                                                                                                (6, 115.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
+                                                                                                (6, 195.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
 
                                                                                                 -- Rooms for Hotel 75
-                                                                                                (75, 130.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', 'Stained Carpet'),
-                                                                                                (75, 165.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
-                                                                                                (75, 250.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', NULL),
-                                                                                                (75, 155.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', NULL),
-                                                                                                (75, 205.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
+                                                                                                (7, 130.00, 'Single', 'None', FALSE, 'WiFi, TV, Mini-Fridge', 'Stained Carpet'),
+                                                                                                (7, 165.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony, Mini-Fridge', NULL),
+                                                                                                (7, 250.00, 'Suite', 'Mountain', TRUE, 'WiFi, TV, Kitchen, Jacuzzi', NULL),
+                                                                                                (7, 155.00, 'Family', 'None', FALSE, 'WiFi, TV, Sofa Bed', NULL),
+                                                                                                (7, 205.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL),
 
                                                                                                 -- Rooms for Hotel 76
-                                                                                                (76, 120.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
-                                                                                                (76, 175.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
-                                                                                                (76, 260.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', 'Leaky Faucet'),
-                                                                                                (76, 165.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
-                                                                                                (76, 215.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL);
+                                                                                                (8, 120.00, 'Single', 'Mountain', FALSE, 'WiFi, TV, Air Conditioning', NULL),
+                                                                                                (8, 175.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Balcony', NULL),
+                                                                                                (8, 260.00, 'Suite', 'None', TRUE, 'WiFi, TV, Kitchen, Bathtub', 'Leaky Faucet'),
+                                                                                                (8, 165.00, 'Family', 'Mountain', FALSE, 'WiFi, TV, Sofa Bed', NULL),
+                                                                                                (8, 215.00, 'Double', 'Sea', TRUE, 'WiFi, TV, Coffee Maker', NULL);
+
+
+INSERT INTO hotelchain (chainid, name, centralofficeaddress, numberofhotels, contactemail, contactphone)
+VALUES
+    (1, 'Luxury Stays', '100 Main St, New York, USA', 8, 'contact@luxurystays.com', '+1-555-1000'),
+    (2, 'Comfort Inns', '200 Lake Rd, Toronto, Canada', 8, 'info@comfortinns.com', '+1-555-2000'),
+    (3, 'Royal Resorts', '300 Sunset Blvd, Miami, USA', 8, 'support@royalresorts.com', '+1-555-3000'),
+    (4, 'Elite Hotels', '400 Ocean Dr, Vancouver, Canada', 8, 'help@elitehotels.com', '+1-555-4000'),
+    (5, 'Global Retreats', '500 Mountain Ave, Denver, USA', 8, 'global@retreats.com', '+1-555-5000');
 
 
 
