@@ -186,7 +186,8 @@
             PreparedStatement stmt = con.prepareStatement(sqlCustomer);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                // Valid customer found; redirect to customer index page
+                String customerID = rs.getString("customerID");
+                request.getSession().setAttribute("customerID", customerID);
                 response.sendRedirect("index.jsp");
                 return;
             }

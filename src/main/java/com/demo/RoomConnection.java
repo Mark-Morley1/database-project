@@ -23,11 +23,12 @@ public class RoomConnection {
             while (rs.next()) {
 
                 Room room = new Room(
+                        rs.getInt("roomId"),
                         rs.getInt("hotelID"),
                         rs.getDouble("price"),
                         rs.getString("capacity"),
-                        rs.getString("view"),
                         rs.getBoolean("extendable"),
+                        rs.getString("view"),
                         rs.getString("amenities"),
                         rs.getString("damageDescription")
                 );

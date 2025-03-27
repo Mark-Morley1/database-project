@@ -13,10 +13,11 @@ public class Criteria {
     private Integer hotelRating;
     private Integer numberOfRooms;
     private Double price;
+    private Integer roomID;
 
 
     public Criteria(String startDate, String endDate, String hotelCapaciy, String hotelArea,
-                    String hotelChain, Integer hotelRating, Integer numberOfRooms, Double price) {
+                    String hotelChain, Integer hotelRating, Integer numberOfRooms, Double price, Integer roomID) {
         this.startDate = this.strToCal(startDate);
         this.endDate = this.strToCal(endDate);
         this.hotelCapaciy = hotelCapaciy;
@@ -25,6 +26,7 @@ public class Criteria {
         this.hotelRating = hotelRating;
         this.numberOfRooms = numberOfRooms;
         this.price = price;
+        this.roomID = roomID;
     }
 
     public boolean meetsRequirements(Criteria criteria){
@@ -54,6 +56,13 @@ public class Criteria {
     }
 
 
+    public Integer getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(Integer roomID) {
+        this.roomID = roomID;
+    }
 
     //gettters and setters
     public Calendar getStartDate() {

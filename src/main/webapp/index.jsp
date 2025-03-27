@@ -28,16 +28,14 @@
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
 
-    String customerID = request.getParameter("customerID");
+    String customerID = (String) session.getAttribute("customerID");
+
+    session.setAttribute("customerID", customerID); // Store in session
+
+
 
     // retrieve grades from database
     HotelChainConnection hotelChainConnectionService = new HotelChainConnection();
-    List<HotelChain> hotels = null;
-    try {
-        hotels = hotelChainConnectionService.getHotelChains();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
 
     // Get current date and next day for default values
     LocalDate today = LocalDate.now();
@@ -267,6 +265,7 @@
 
                     <div class="d-grid mt-4">
                         <button type="submit" class="btn btn-submit">
+                            <input type="hidden" name="customerID" value="<%= session.getAttribute("customerID") %>">
                             <i class="fas fa-search me-2"></i>Search Hotels
                         </button>
                     </div>
@@ -275,7 +274,6 @@
         </div>
     </div>
 </div>
-
 <input type="hidden" id="message" value="<%= msgField %>">
 
 <script src="/assets/js/jquery.min.js"></script>

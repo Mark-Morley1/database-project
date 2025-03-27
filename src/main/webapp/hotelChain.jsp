@@ -46,9 +46,9 @@
     String hotelRating= request.getParameter("hotelRating");
     String numberOfRooms = request.getParameter("numberOfRooms");
     String hotelPrice = request.getParameter("hotelPrice");
-    String customerID= request.getParameter("customerID");
+    String customerID = request.getParameter("customerID");
 
-    if(roomCapacity.equals("")){
+    if(roomCapacity.isEmpty()){
         roomCapacity = "";
     }
     if (numberOfRooms.equals("")){
@@ -65,7 +65,8 @@
             hotelChain,
             Integer.parseInt(hotelRating),
             Integer.parseInt(numberOfRooms),
-            Double.parseDouble(hotelPrice)
+            Double.parseDouble(hotelPrice),
+            -1
         );
 
     try {
@@ -96,7 +97,8 @@
                 currentChain.getName(),
                 currentHotel.getNumberOfRooms(),
                 currentHotel.getRating(),
-                room.getPrice()
+                room.getPrice(),
+                room.getPrimaryKey()
             );
             if(userCriteria.meetsRequirements(currentAvailableRoom)){
                 availableRooms.add(currentAvailableRoom);
@@ -136,8 +138,8 @@
                             </thead>
                             <tbody>
                             <%
-                                for (Criteria criteria : availableRooms) { %>
-
+                                for (Criteria criteria : availableRooms) {
+                            %>
                             <tr>
                                 <td><%= criteria.getHotelCapaciy() %></td>
                                 <td><%= criteria.getHotelArea() %></td>
@@ -145,12 +147,23 @@
                                 <td><%= criteria.getHotelRating() %></td>
                                 <td><%= criteria.getNumberOfRooms() %></td>
                                 <td><%= criteria.getPrice() %></td>
-                                <td><button onclick="buttonPressed() " type="submit" class="btn btn-book">Book Now</button></td>
+                                <td>
+
+                                    <form action="bookRoom.jsp" method="post">
+                                        <input type="hidden" name="customerID" value="<%= session.getAttribute("customerID") %>">
+                                        <input type="hidden" name="roomID" value="<%= criteria.getRoomID() %>">
+                                        <input type="hidden" name="bookingStartDate" value="<%= bookingStartDate %>">
+                                        <input type="hidden" name="bookingEndDate" value="<%= bookingEndDate %>">
+                                        <button type="submit" class="btn btn-book">Book Now</button>
+                                    </form>
+                                </td>
                             </tr>
 
-
-                            <% } %>
+                            <%
+                                }
+                            %>
                             </tbody>
+
                         </table>
                     </div>
                     <%} %>
@@ -160,9 +173,3 @@
 
     </div>
 </div>
-
-<script>
-    function buttonPressed() {
-        window.open("bookRoom.jsp", "_self");
-    }
-</script>
