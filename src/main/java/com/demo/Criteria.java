@@ -29,7 +29,6 @@ public class Criteria {
 
     public boolean meetsRequirements(Criteria criteria){
 
-
         return
                 (this.hotelCapaciy.equals("") || criteria.hotelCapaciy.equals(this.hotelCapaciy)) &&
                 criteria.hotelArea.contains(this.hotelArea) &&

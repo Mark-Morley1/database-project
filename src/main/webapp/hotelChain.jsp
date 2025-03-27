@@ -93,9 +93,8 @@
                 room.getCapacity(),
                 currentHotel.getArea(),
                 currentChain.getName(),
-
-                currentHotel.getRating(),
                 currentHotel.getNumberOfRooms(),
+                currentHotel.getRating(),
                 room.getPrice()
             );
             if(userCriteria.meetsRequirements(currentAvailableRoom)){
@@ -141,8 +140,8 @@
                                 <td><%= criteria.getHotelCapaciy() %></td>
                                 <td><%= criteria.getHotelArea() %></td>
                                 <td><%= criteria.getHotelChain() %></td>
-                                <td><%= criteria.getNumberOfRooms() %></td>
                                 <td><%= criteria.getHotelRating() %></td>
+                                <td><%= criteria.getNumberOfRooms() %></td>
                                 <td><%= criteria.getPrice() %></td>
 
                             </tr>
