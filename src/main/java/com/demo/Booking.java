@@ -14,7 +14,6 @@ CREATE TABLE BookingArchive (
 
 public class Booking {
 
-    private Integer archiveId;
     private Integer bookingId;
     private Integer customerId;
     private Integer roomId;
@@ -23,8 +22,7 @@ public class Booking {
     private String status;
 
 
-    public Booking(Integer archiveId, Integer bookingId, Integer customerId, Integer roomId, String startDate, String endDate, String status) {
-        this.archiveId = archiveId;
+    public Booking( Integer bookingId, Integer customerId, Integer roomId, String startDate, String endDate, String status) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.roomId = roomId;
@@ -40,14 +38,6 @@ public class Booking {
         this.roomId = roomId;
         this.endDate = endDate;
         this.status = status;
-    }
-
-    public Integer getArchiveId() {
-        return archiveId;
-    }
-
-    public void setArchiveId(Integer archiveId) {
-        this.archiveId = archiveId;
     }
 
     public Integer getBookingId() {
