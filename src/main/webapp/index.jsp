@@ -168,7 +168,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="hotelRating" class="form-label">Minimum Rating</label>
                             <select class="form-select" id="hotelRating" name="hotelRating">
-                                <option value="">Any rating</option>
+                                <option value="0">Any rating</option>
                                 <option value="1">★☆☆☆☆ (1 Star)</option>
                                 <option value="2">★★☆☆☆ (2 Star)</option>
                                 <option value="3">★★★☆☆ (3 Star)</option>

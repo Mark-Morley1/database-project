@@ -36,8 +36,8 @@ public class Criteria {
                         criteria.hotelChain.contains(this.hotelChain) &&
                 criteria.hotelRating >= this.hotelRating &&
 
-                        criteria.numberOfRooms <= this.numberOfRooms &&
-                        criteria.price >= this.price;
+                        criteria.numberOfRooms >= this.numberOfRooms &&
+                        (this.price == 0 || criteria.price <= this.price);
     }
     //converts the date in string format to calendar
     private Calendar strToCal(String date){

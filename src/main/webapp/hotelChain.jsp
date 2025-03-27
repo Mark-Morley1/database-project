@@ -51,7 +51,7 @@
         roomCapacity = "";
     }
     if (numberOfRooms.equals("")){
-        numberOfRooms = "9999";
+        numberOfRooms = "0";
     }
     if(hotelPrice.equals("")){
         hotelPrice = "0";
