@@ -48,10 +48,10 @@
     String hotelPrice = request.getParameter("hotelPrice");
 
     if(roomCapacity.equals("")){
-        roomCapacity = "1";
+        roomCapacity = "";
     }
     if (numberOfRooms.equals("")){
-        numberOfRooms = "1";
+        numberOfRooms = "9999";
     }
     if(hotelPrice.equals("")){
         hotelPrice = "0";
@@ -93,15 +93,12 @@
                 room.getCapacity(),
                 currentHotel.getArea(),
                 currentChain.getName(),
-                currentHotel.getRating(),
                 currentHotel.getNumberOfRooms(),
+                currentHotel.getRating(),
                 room.getPrice()
             );
             if(userCriteria.meetsRequirements(currentAvailableRoom)){
-                if(currentAvailableRoom != null){
-                    availableRooms.add(currentAvailableRoom);
-                }
-
+                availableRooms.add(currentAvailableRoom);
             }
         }
 

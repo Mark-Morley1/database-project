@@ -66,8 +66,9 @@ public class RoomConnection {
                             rs.getString("name"),
                             rs.getString("address"),
                             rs.getString("contactemail"),
-                            rs.getString("contactphone"),
                             rs.getString("area"),
+                            rs.getString("contactphone"),
+
                             rs.getInt("numberofrooms"),
                             rs.getInt("rating")
                     );

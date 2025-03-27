@@ -28,15 +28,18 @@ public class Criteria {
     }
 
     public boolean meetsRequirements(Criteria criteria){
-        return criteria.getHotelCapaciy() == null || this.getHotelCapaciy().equals(criteria.getHotelCapaciy()) &&
-                (criteria.hotelArea == null || hotelArea.contains(criteria.hotelArea)) &&
-                criteria.hotelChain == null || this.hotelChain.contains(criteria.hotelChain) &&
-                this.hotelRating >= criteria.hotelRating &&
-                criteria.numberOfRooms == null || this.numberOfRooms >= criteria.numberOfRooms &&
-                criteria.price == null || this.price <= criteria.price;
+
+
+        return
+                (this.hotelCapaciy.equals("") || criteria.hotelCapaciy.equals(this.hotelCapaciy)) &&
+                criteria.hotelArea.contains(this.hotelArea) &&
+
+                        criteria.hotelChain.contains(this.hotelChain) &&
+                criteria.hotelRating >= this.hotelRating &&
+
+                        criteria.numberOfRooms <= this.numberOfRooms &&
+                        criteria.price >= this.price;
     }
-
-
     //converts the date in string format to calendar
     private Calendar strToCal(String date){
         Calendar temp = Calendar.getInstance();
