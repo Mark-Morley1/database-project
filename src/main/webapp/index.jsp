@@ -47,53 +47,91 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
+    <title>Search for Hotels</title>
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Hotel Search</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/search.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <style>
         body {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hello.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            color: white;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
         }
+
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         .search-container {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: white;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 30px;
             margin-top: 30px;
             margin-bottom: 30px;
-            color: #333;
         }
+
         .form-title {
             color: #2c3e50;
             margin-bottom: 25px;
             font-weight: 600;
             text-align: center;
+            font-family: 'Playfair Display', serif;
         }
+
         .form-label {
             font-weight: 500;
             color: #495057;
+            margin-bottom: 8px;
+            display: block;
         }
+
+        .fieldContainer {
+            margin-bottom: 20px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 5px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            width: 100%;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+        }
+
         .btn-submit {
             background-color: #3498db;
             border: none;
-            padding: 10px 25px;
+            padding: 12px 25px;
             font-weight: 500;
             width: 100%;
+            color: white;
+            border-radius: 5px;
+            transition: all 0.3s;
         }
+
         .btn-submit:hover {
             background-color: #2980b9;
+            transform: translateY(-2px);
         }
+
         .btn-employee {
             background-color: #2ecc71;
             border: none;
@@ -103,29 +141,50 @@
             position: absolute;
             top: 20px;
             right: 20px;
+            border-radius: 5px;
         }
+
         .btn-employee:hover {
             background-color: #27ae60;
             color: white;
         }
-        .form-control, .form-select {
-            border-radius: 5px;
-            padding: 10px;
-            border: 1px solid #ced4da;
+
+        .date-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .form-control:focus, .form-select:focus {
-            border-color: #3498db;
-            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+
+        .date-range-text {
+            color: #6c757d;
+            font-weight: 500;
         }
-        .navbar {
-            position: relative;
+
+        .ratingFont {
+            font-family: Arial, sans-serif;
         }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .row > div {
+            flex: 1;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
         .centered-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: calc(100vh - 100px);
+            padding: 20px;
         }
     </style>
 </head>
@@ -135,7 +194,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Hotel Booking</a>
         <a href="employeeLOGin.jsp" class="btn btn-employee">
-            <i class="fas fa-user-tie me-2"></i>Employee Login
+            <i class="fas fa-user-tie me-2"></i> Employee Login
         </a>
     </div>
 </nav>
@@ -147,31 +206,15 @@
                 <h2 class="form-title">Find Your Perfect Hotel</h2>
 
                 <form action="hotelChain.jsp" method="post">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="bookingStartDate" class="form-label">Booking Start Date</label>
-                            <input type="date" class="form-control" id="bookingStartDate" name="bookingStartDate"
-                                   value="<%= todayStr %>" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="bookingEndDate" class="form-label">Booking End Date</label>
-                            <input type="date" class="form-control" id="bookingEndDate" name="bookingEndDate"
-                                   value="<%= tomorrowStr %>" required>
-                        </div>
+                    <!-- Hotel Chain -->
+                    <div class="fieldContainer">
+                        <label for="hotelChain" class="form-label">Hotel Chain</label>
+                        <input type="text" class="form-control" id="hotelChain" name="hotelChain" placeholder="Chain name (optional)">
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="roomCapacity" class="form-label">Room Type</label>
-                            <select class="form-select" id="roomCapacity" name="roomCapacity">
-                                <option value="">Any room type</option>
-                                <option value="Single">Single</option>
-                                <option value="Double">Double</option>
-                                <option value="Suite">Suite</option>
-                                <option value="Family">Family</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
+                        <!-- Area -->
+                        <div class="fieldContainer">
                             <label for="hotelArea" class="form-label">Hotel Area</label>
                             <select class="form-select" id="hotelArea" name="hotelArea">
                                 <option value="">Any area</option>
@@ -184,38 +227,59 @@
                                 <option value="Business District">Business District</option>
                             </select>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="hotelChain" class="form-label">Hotel Chain</label>
-                            <input type="text" class="form-control" id="hotelChain" name="hotelChain" placeholder="Chain name (optional)">
-                        </div>
-                        <div class="col-md-6 mb-3">
+                        <!-- Rating -->
+                        <div class="fieldContainer">
                             <label for="hotelRating" class="form-label">Minimum Rating</label>
                             <select class="form-select" id="hotelRating" name="hotelRating">
-                                <option value="0">Any rating</option>
-                                <option value="1">★☆☆☆☆ (1 Star)</option>
-                                <option value="2">★★☆☆☆ (2 Star)</option>
-                                <option value="3">★★★☆☆ (3 Star)</option>
-                                <option value="4">★★★★☆ (4 Star)</option>
-                                <option value="5">★★★★★ (5 Star)</option>
+                                <option class="ratingFont" value="0">Any rating</option>
+                                <option class="ratingFont" value="1">★☆☆☆☆ (1 Star)</option>
+                                <option class="ratingFont" value="2">★★☆☆☆ (2 Star)</option>
+                                <option class="ratingFont" value="3">★★★☆☆ (3 Star)</option>
+                                <option class="ratingFont" value="4">★★★★☆ (4 Star)</option>
+                                <option class="ratingFont" value="5">★★★★★ (5 Star)</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <!-- Room Type -->
+                        <div class="fieldContainer">
+                            <label for="roomCapacity" class="form-label">Room Type</label>
+                            <select class="form-select" id="roomCapacity" name="roomCapacity">
+                                <option value="">Any room type</option>
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                                <option value="Family">Family</option>
+                                <option value="Suite">Suite</option>
+                            </select>
+                        </div>
+                        <!-- Number of Rooms -->
+                        <div class="fieldContainer">
                             <label for="numberOfRooms" class="form-label">Number of Rooms</label>
                             <input type="number" class="form-control" id="numberOfRooms" name="numberOfRooms"
                                    placeholder="How many rooms?" min="0" value="1">
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="hotelPrice" class="form-label">Maximum Price (per night)</label>
-                            <div class="input-group">
-                                <span class="input-group-text">$</span>
-                                <input type="number" class="form-control" id="hotelPrice" name="hotelPrice" placeholder="Your budget" min="0">
-                            </div>
+                    </div>
+
+                    <!-- Hotel Price -->
+                    <div class="fieldContainer">
+                        <label for="hotelPrice" class="form-label">Maximum Price (per night)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="hotelPrice" name="hotelPrice"
+                                   placeholder="Your budget" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Date Range -->
+                    <div class="fieldContainer full-width">
+                        <label class="form-label">Booking Dates</label>
+                        <div class="date-range">
+                            <input type="date" class="form-control date-picker" id="bookingStartDate"
+                                   name="bookingStartDate" value="<%= todayStr %>" required>
+                            <span class="date-range-text">to</span>
+                            <input type="date" class="form-control date-picker" id="bookingEndDate"
+                                   name="bookingEndDate" value="<%= tomorrowStr %>" required>
                         </div>
                     </div>
 
@@ -248,26 +312,25 @@
         if (messages !== "") messages = JSON.parse("[" + messages.slice(0, -1) + "]");
         else messages = [];
 
-        messages
-            .forEach(({
-                          type,
-                          value
-                      }) => {
-                switch (type) {
-                    case "error":
-                        toastr.error(value)
-                        break;
-                    case "success":
-                        toastr.success(value)
-                        break;
-                    case "warning":
-                        toastr.warning(value)
-                        break;
-                    default:
-                        toastr.info(value)
-                        break;
-                }
-            });
+        messages.forEach(({
+                              type,
+                              value
+                          }) => {
+            switch (type) {
+                case "error":
+                    toastr.error(value)
+                    break;
+                case "success":
+                    toastr.success(value)
+                    break;
+                case "warning":
+                    toastr.warning(value)
+                    break;
+                default:
+                    toastr.info(value)
+                    break;
+            }
+        });
     });
 </script>
 
