@@ -89,9 +89,12 @@
     <input type="text" id="hotelPrice" name="hotelPrice" ><br><br>
 
     <button type="submit" class="btn btn-primary">Submit</button>
+
 </form>
 
-
+<form action="employeeLOGin.jsp" method="post">
+    <button type="employee login" class="btn login">employee login</button>
+</form>
 
 <script src="/assets/js/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
