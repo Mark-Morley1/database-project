@@ -7,7 +7,7 @@ public class Criteria {
 
     private Calendar startDate;
     private Calendar endDate;
-    private Integer hotelCapaciy;
+    private String hotelCapaciy;
     private String hotelArea;
     private String hotelChain;
     private Integer hotelRating;
@@ -15,10 +15,10 @@ public class Criteria {
     private Double price;
 
 
-    public Criteria(Calendar startDate, Calendar endDate, Integer hotelCapaciy, String hotelArea,
+    public Criteria(String startDate, String endDate, String hotelCapaciy, String hotelArea,
                     String hotelChain, Integer hotelRating, Integer numberOfRooms, Double price) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDate = this.strToCal(startDate);
+        this.endDate = this.strToCal(endDate);
         this.hotelCapaciy = hotelCapaciy;
         this.hotelArea = hotelArea;
         this.hotelChain = hotelChain;
@@ -27,11 +27,20 @@ public class Criteria {
         this.price = price;
     }
 
+    public boolean meetsRequirements(Criteria criteria){
+        return criteria.getHotelCapaciy() == null || this.getHotelCapaciy().equals(criteria.getHotelCapaciy()) &&
+                (criteria.hotelArea == null || hotelArea.contains(criteria.hotelArea)) &&
+                criteria.hotelChain == null || this.hotelChain.contains(criteria.hotelChain) &&
+                this.hotelRating >= criteria.hotelRating &&
+                criteria.numberOfRooms == null || this.numberOfRooms >= criteria.numberOfRooms &&
+                criteria.price == null || this.price <= criteria.price;
+    }
+
 
     //converts the date in string format to calendar
     private Calendar strToCal(String date){
         Calendar temp = Calendar.getInstance();
-        String[] spl= date.split("/");
+        String[] spl= date.split("-");
         int month=Integer.parseInt(spl[0])-1; //month is 0 indexed so i -1
         int dated=Integer.parseInt(spl[1]);
         int year=Integer.parseInt(spl[2]);
@@ -71,11 +80,11 @@ public class Criteria {
         this.endDate = strToCal(date);
     }
 
-    public Integer getHotelCapaciy() {
+    public String getHotelCapaciy() {
         return hotelCapaciy;
     }
 
-    public void setHotelCapaciy(Integer hotelCapaciy) {
+    public void setHotelCapaciy(String hotelCapaciy) {
         this.hotelCapaciy = hotelCapaciy;
     }
 
@@ -134,4 +143,5 @@ public class Criteria {
                 ", price=" + price +
                 '}';
     }
+
 }
