@@ -93,8 +93,9 @@
                 room.getCapacity(),
                 currentHotel.getArea(),
                 currentChain.getName(),
-                currentHotel.getNumberOfRooms(),
+
                 currentHotel.getRating(),
+                currentHotel.getNumberOfRooms(),
                 room.getPrice()
             );
             if(userCriteria.meetsRequirements(currentAvailableRoom)){
