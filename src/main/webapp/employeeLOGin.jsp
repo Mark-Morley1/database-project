@@ -1,4 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+        <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.demo.*" %>
+
+<%
+    ArrayList<Message> messages;
+
+    // get any incoming messages from session attribute named messages
+    // if nothing exists then messages is an empty arraylist
+    if ((ArrayList<Message>) session.getAttribute("messages") == null) messages = new ArrayList<>();
+        // else get that value
+    else messages = (ArrayList<Message>) session.getAttribute("messages");
+
+    String msgField = "";
+
+    // create the object in the form of a stringified json
+    for (Message m : messages) {
+        msgField += "{\"type\":\"" + m.type + "\",\"value\":\"" + m.value.replaceAll("['\"]+", "") + "\"},";
+    }
+
+    // empty session messages
+    session.setAttribute("messages", new ArrayList<Message>());
+
+    String errorMessage = null;
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -118,33 +145,14 @@
 <div class="login-container">
     <h2>Employee Login</h2>
 
-    <%-- Java code for login processing --%>
-    <%
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        boolean isLoggedIn = false;
-        String errorMessage = null;
-
-        if (username != null && password != null) {
-            if (username.equals("username") && password.equals("password")) {
-                isLoggedIn = true;
-                session.setAttribute("loggedIn", true);
-                session.setAttribute("username", username);
-                response.sendRedirect("welcome.jsp");
-            } else {
-                errorMessage = "Invalid username or password";
-            }
-        }
-    %>
 
     <%-- Display error message if login failed --%>
     <% if (errorMessage != null) { %>
-    <div class="error"><%= errorMessage %></div>
+    <div class="error"><%=errorMessage%></div>
     <% } %>
 
     <%-- Login Form --%>
-    <form method="post">
+    <form method="post" action="login.jsp">
         <div class="form-group">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -153,8 +161,9 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <input type="submit" value="Login">
+        <button type="submit">Login</button>
     </form>
+
 </div>
 
 <!-- Include Bootstrap JS -->

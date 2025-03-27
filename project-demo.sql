@@ -187,3 +187,13 @@ VALUES
 
 
 
+INSERT INTO Employee (HotelID, FullName, Address, SSN_SIN, Position)
+VALUES
+    (1, 'Alice Thompson', '100 Elm St, Ottawa, ON', '111223333', 'General Manager'),
+    (2, 'Brian White', '200 Oak St, Toronto, ON', '222334444', 'Front Desk Clerk'),
+    (3, 'Catherine Green', '300 Pine St, Montreal, QC', '333445555', 'Housekeeper'),
+    (4, 'David Black', '400 Birch St, Vancouver, BC', '444556666', 'Chef'),
+    (5, 'Emma Harris', '500 Maple St, Calgary, AB', '555667777', 'Bartender'),
+    (6, 'Frank Robinson', '600 Cedar St, Halifax, NS', '666778888', 'Concierge'),
+    (7, 'Grace Lewis', '700 Willow St, Winnipeg, MB', '777889999', 'Security Officer'),
+    (8, 'Henry Walker', '800 Spruce St, Edmonton, AB', '888990000', 'Maintenance Supervisor');
