@@ -134,23 +134,6 @@
             transform: translateY(-2px);
         }
 
-        .btn-employee {
-            background-color: #2ecc71;
-            border: none;
-            padding: 8px 20px;
-            font-weight: 500;
-            color: white;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            border-radius: 5px;
-        }
-
-        .btn-employee:hover {
-            background-color: #27ae60;
-            color: white;
-        }
-
         .date-range {
             display: flex;
             align-items: center;
@@ -195,9 +178,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Hotel Booking</a>
-        <a href="employeeLOGin.jsp" class="btn btn-employee">
-            <i class="fas fa-user-tie me-2"></i> Employee Login
-        </a>
     </div>
 </nav>
 
