@@ -46,6 +46,7 @@
     String hotelRating= request.getParameter("hotelRating");
     String numberOfRooms = request.getParameter("numberOfRooms");
     String hotelPrice = request.getParameter("hotelPrice");
+    String customerID= request.getParameter("customerID");
 
     if(roomCapacity.equals("")){
         roomCapacity = "";

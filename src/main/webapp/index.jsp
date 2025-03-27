@@ -28,6 +28,8 @@
     // empty session messages
     session.setAttribute("messages", new ArrayList<Message>());
 
+    String customerID = request.getParameter("customerID");
+
     // retrieve grades from database
     HotelChainConnection hotelChainConnectionService = new HotelChainConnection();
     List<HotelChain> hotels = null;
