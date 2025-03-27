@@ -22,20 +22,10 @@ public class RoomConnection {
             // iterate through the result set
             while (rs.next()) {
 
-                /*
-                this.hotelID = hotelID;
-        this.price = price;
-        this.capacity = capacity;
-        this.view = view;
-        this.extendable = extendable;
-        this.amenities = amenities;
-        this.damageDescription = damageDescription;
-                 */
-
                 Room room = new Room(
                         rs.getInt("hotelID"),
                         rs.getDouble("price"),
-                        rs.getInt("capacity"),
+                        rs.getString("capacity"),
                         rs.getString("view"),
                         rs.getBoolean("extendable"),
                         rs.getString("amenities"),
@@ -58,4 +48,36 @@ public class RoomConnection {
         }
 
     }
+
+    public Hotel getHotel(int hotelID) throws Exception {
+        ConnectionDB db = new ConnectionDB();
+        String sql = "SELECT * FROM public.hotel WHERE hotelID = ?"; // Use * to fetch all columns
+        Hotel hotel = null;
+
+        try (Connection con = db.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, hotelID); // Set the parameter for hotelID
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) { // Ensure there's a result before reading data
+                    hotel = new Hotel(
+                            rs.getInt( "chainID"),
+                            rs.getString("name"),
+                            rs.getString("address"),
+                            rs.getString("contactemail"),
+                            rs.getString("contactphone"),
+                            rs.getString("area"),
+                            rs.getInt("numberofrooms"),
+                            rs.getInt("rating")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            throw new Exception("Database error: " + e.getMessage(), e);
+        }
+
+        return hotel;
+    }
+
 }

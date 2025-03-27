@@ -5,13 +5,13 @@ public class Room {
     private Integer roomId;
     private Integer hotelID;
     private Double price;
-    private Integer capacity;
+    private String capacity;
     private String view;
     private Boolean extendable;
     private String amenities;
     private String damageDescription;
 
-    public Room(Integer primaryKey, Integer hotelID, Double price, Integer capacity, Boolean extendable, String view, String amenities, String damageDescription) {
+    public Room(Integer primaryKey, Integer hotelID, Double price, String capacity, Boolean extendable, String view, String amenities, String damageDescription) {
         this.roomId = primaryKey;
         this.hotelID = hotelID;
         this.price = price;
@@ -22,7 +22,7 @@ public class Room {
         this.damageDescription = damageDescription;
     }
 
-    public Room(Integer hotelID, Double price, Integer capacity, String view, Boolean extendable, String amenities, String damageDescription) {
+    public Room(Integer hotelID, Double price, String capacity, String view, Boolean extendable, String amenities, String damageDescription) {
         this.hotelID = hotelID;
         this.price = price;
         this.capacity = capacity;
@@ -40,7 +40,7 @@ public class Room {
         return hotelID;
     }
 
-    public Integer getCapacity() {
+    public String getCapacity() {
         return capacity;
     }
 
@@ -76,7 +76,7 @@ public class Room {
         this.price = price;
     }
 
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(String capacity) {
         this.capacity = capacity;
     }
 

@@ -13,6 +13,7 @@ public class HotelConnection {
 
         List<Hotel> hotels = new ArrayList<>();
         try (Connection con = db.getConnection()) {
+
             // prepare the statement
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -30,7 +31,7 @@ public class HotelConnection {
                         rs.getString("contactEmail"),
                         rs.getString("contactPhone"),
                         rs.getString("area"),
-                        rs.getInt("category"),
+                        rs.getInt("rating"),
                         rs.getInt("numberOfRooms")
                 );
 
@@ -49,5 +50,34 @@ public class HotelConnection {
             throw new Exception(e.getMessage());
         }
 
+    }
+
+    public HotelChain getHotelChain(int hotelChainID) throws Exception {
+        ConnectionDB db = new ConnectionDB();
+        String sql = "SELECT * FROM public.hotelchain WHERE chainID = ?"; // Use * to fetch all columns
+        HotelChain hotelChain = null;
+
+        try (Connection con = db.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setInt(1, hotelChainID); // Set the parameter for hotelID
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) { // Ensure there's a result before reading data
+                    hotelChain = new HotelChain(
+                            hotelChainID,
+                            rs.getString("name"),
+                            rs.getString("centralofficeaddress"),
+                            Integer.valueOf(rs.getString("numberofhotels")),
+                            rs.getString("contactemail"),
+                            rs.getString("contactphone")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            throw new Exception("Database error: " + e.getMessage(), e);
+        }
+
+        return hotelChain;
     }
 }
