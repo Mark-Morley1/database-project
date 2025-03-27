@@ -128,6 +128,7 @@
                                 <th>Rating</th>
                                 <th>Number of Rooms</th>
                                 <th>Price</th>
+                                <th>Book Now</th>
                                 <th></th>
 
                             </tr>
@@ -143,8 +144,9 @@
                                 <td><%= criteria.getHotelRating() %></td>
                                 <td><%= criteria.getNumberOfRooms() %></td>
                                 <td><%= criteria.getPrice() %></td>
-
+                                <td><button onclick="buttonPressed() " type="submit" class="btn btn-book">Book Now</button></td>
                             </tr>
+
 
                             <% } %>
                             </tbody>
@@ -157,3 +159,10 @@
 
     </div>
 </div>
+
+<script>
+    function buttonPressed() {
+        alert("Button was pressed!");
+        window.open("bookRoom.jsp", "_self");
+    }
+</script>

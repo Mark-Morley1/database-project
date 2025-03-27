@@ -208,16 +208,6 @@ VALUES
     ('Emily Davis', '101 Birch St, Calgary, AB', 'SSN', '555-66-7777', '2025-03-04'),
     ('Robert Brown', '202 Cedar St, Vancouver, BC', 'SIN', '111-22-3333', '2025-03-05');
 
--- Example Customer Insertions
-
-INSERT INTO Customer (FullName, Address, IDType, IDNumber, RegistrationDate)
-VALUES
-    ('John Doe', '123 Maple St, Ottawa, ON', 'SSN', '123-45-6789', '2025-03-01'),
-    ('Jane Smith', '456 Oak St, Toronto, ON', 'SIN', '987-65-4321', '2025-03-02'),
-    ('Michael Johnson', '789 Pine St, Montreal, QC', 'Driving License', 'B1234567', '2025-03-03'),
-    ('Emily Davis', '101 Birch St, Calgary, AB', 'SSN', '555-66-7777', '2025-03-04'),
-    ('Robert Brown', '202 Cedar St, Vancouver, BC', 'SIN', '111-22-3333', '2025-03-05');
-
 INSERT INTO Booking (CustomerID, RoomID, StartDate, EndDate, Status)
 VALUES
     (1, 41, '2025-04-01', '2025-04-05', 'Booked');
