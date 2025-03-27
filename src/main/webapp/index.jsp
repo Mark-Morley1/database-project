@@ -5,6 +5,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.demo.HotelChain" %>
 <%@ page import="com.demo.HotelChainConnection" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -34,6 +36,13 @@
     } catch (Exception e) {
         e.printStackTrace();
     }
+
+    // Get current date and next day for default values
+    LocalDate today = LocalDate.now();
+    LocalDate tomorrow = today.plusDays(1);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    String todayStr = today.format(formatter);
+    String tomorrowStr = tomorrow.format(formatter);
 %>
 
 <!DOCTYPE html>
@@ -141,22 +150,39 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="bookingStartDate" class="form-label">Booking Start Date</label>
-                            <input type="date" class="form-control" id="bookingStartDate" name="bookingStartDate" required>
+                            <input type="date" class="form-control" id="bookingStartDate" name="bookingStartDate"
+                                   value="<%= todayStr %>" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="bookingEndDate" class="form-label">Booking End Date</label>
-                            <input type="date" class="form-control" id="bookingEndDate" name="bookingEndDate" required>
+                            <input type="date" class="form-control" id="bookingEndDate" name="bookingEndDate"
+                                   value="<%= tomorrowStr %>" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="roomCapacity" class="form-label">Room Capacity</label>
-                            <input type="number" class="form-control" id="roomCapacity" name="roomCapacity" placeholder="Number of guests">
+                            <label for="roomCapacity" class="form-label">Room Type</label>
+                            <select class="form-select" id="roomCapacity" name="roomCapacity">
+                                <option value="">Any room type</option>
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                                <option value="Suite">Suite</option>
+                                <option value="Family">Family</option>
+                            </select>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="hotelArea" class="form-label">Hotel Area</label>
-                            <input type="text" class="form-control" id="hotelArea" name="hotelArea" placeholder="City or region">
+                            <select class="form-select" id="hotelArea" name="hotelArea">
+                                <option value="">Any area</option>
+                                <option value="Downtown">Downtown</option>
+                                <option value="City Center">City Center</option>
+                                <option value="Uptown">Uptown</option>
+                                <option value="Suburban">Suburban</option>
+                                <option value="Beachside">Beachside</option>
+                                <option value="Near Airport">Near Airport</option>
+                                <option value="Business District">Business District</option>
+                            </select>
                         </div>
                     </div>
 
@@ -181,13 +207,14 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="numberOfRooms" class="form-label">Number of Rooms</label>
-                            <input type="number" class="form-control" id="numberOfRooms" name="numberOfRooms" placeholder="How many rooms?">
+                            <input type="number" class="form-control" id="numberOfRooms" name="numberOfRooms"
+                                   placeholder="How many rooms?" min="0" value="1">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="hotelPrice" class="form-label">Maximum Price (per night)</label>
                             <div class="input-group">
                                 <span class="input-group-text">$</span>
-                                <input type="number" class="form-control" id="hotelPrice" name="hotelPrice" placeholder="Your budget">
+                                <input type="number" class="form-control" id="hotelPrice" name="hotelPrice" placeholder="Your budget" min="0">
                             </div>
                         </div>
                     </div>
