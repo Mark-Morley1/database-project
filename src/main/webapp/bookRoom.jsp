@@ -95,30 +95,3 @@
     }
 </style>
 
-<!-- Add Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-<script>
-    // Display any messages that were passed
-    window.onload = function() {
-        let messageField = document.getElementById('message').value;
-        if (messageField && messageField !== '') {
-            try {
-                // Remove trailing comma if exists
-                if (messageField.endsWith(',')) {
-                    messageField = messageField.slice(0, -1);
-                }
-                let messages = JSON.parse('[' + messageField + ']');
-                messages.forEach(function(message) {
-                    if (message.type === 'error') {
-                        alert('Error: ' + message.value);
-                    } else if (message.type === 'success') {
-                        alert('Success: ' + message.value);
-                    }
-                });
-            } catch (e) {
-                console.error('Error parsing messages:', e);
-            }
-        }
-    };
-</script>

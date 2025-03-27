@@ -69,7 +69,7 @@
     </table>
 
     <div class="text-center mt-4">
-        <a href="employeeLOGin.jsp" class="btn btn-primary">Back to Dashboard</a>
+        <a href="login.jsp" class="btn btn-primary">Back to Dashboard</a>
     </div>
 </div>
 
