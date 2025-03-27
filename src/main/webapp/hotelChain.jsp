@@ -162,7 +162,6 @@
 
 <script>
     function buttonPressed() {
-        alert("Button was pressed!");
         window.open("bookRoom.jsp", "_self");
     }
 </script>
