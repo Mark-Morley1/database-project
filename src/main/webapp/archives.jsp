@@ -1,9 +1,17 @@
+<%@ page import="java.sql.*" %>
+<%@ page import="com.demo.BookingConnection" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.demo.Booking" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.demo.ConnectionDB" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Booking Archives | Hotel Management System</title>
+  <title>Booking Archives | Hotel System</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -63,11 +71,6 @@
     tr:hover {
       background-color: #f5f5f5;
     }
-
-    .btn-back {
-      background-color: #6c757d;
-      color: white;
-    }
   </style>
 </head>
 <body>
@@ -76,7 +79,7 @@
     <div class="row align-items-center">
       <div class="col-md-8">
         <h1><i class="fas fa-archive me-2"></i>Booking Archives</h1>
-        <p class="mb-0">View historical booking records</p>
+        <p class="mb-0">View all completed hotel reservations</p>
       </div>
       <div class="col-md-4 text-end">
         <a href="employeePage.jsp" class="btn btn-light">
@@ -88,7 +91,7 @@
 
   <div class="card mb-4">
     <div class="card-header bg-white">
-      <h5 class="mb-0"><i class="fas fa-history me-2"></i>Archived Bookings</h5>
+      <h5 class="mb-0"><i class="fas fa-list me-2"></i>Completed Bookings</h5>
     </div>
     <div class="card-body p-0">
       <div class="table-responsive">
@@ -101,53 +104,55 @@
             <th>Check-in</th>
             <th>Check-out</th>
             <th>Status</th>
-            <th>Archived Date</th>
           </tr>
           </thead>
           <tbody>
-          <!-- Sample archived booking 1 -->
-          <tr>
-            <td>1001</td>
-            <td>John Smith</td>
-            <td>#205</td>
-            <td>2023-05-10</td>
-            <td>2023-05-15</td>
-            <td><span class="status-badge badge-completed">Completed</span></td>
-            <td>2023-05-16</td>
-          </tr>
+          <%
+            String sql = "SELECT b.BookingID, " +
+                    "c.fullname AS CustomerName, " +
+                    "r.RoomID AS RoomNumber, " +
+                    "b.StartDate AS CheckInDate, " +
+                    "b.EndDate AS CheckOutDate, " +
+                    "b.Status " +
+                    "FROM Booking b " +
+                    "JOIN Customer c ON b.CustomerID = c.CustomerID " +
+                    "JOIN Room r ON b.RoomID = r.RoomID " +
+                    "WHERE b.Status = 'Completed' " +
+                    "ORDER BY b.BookingID DESC";
 
-          <!-- Sample archived booking 2 -->
-          <tr>
-            <td>1002</td>
-            <td>Sarah Johnson</td>
-            <td>#312</td>
-            <td>2023-06-01</td>
-            <td>2023-06-05</td>
-            <td><span class="status-badge badge-completed">Completed</span></td>
-            <td>2023-06-06</td>
-          </tr>
+            ConnectionDB db = new ConnectionDB();
+            try (Connection con = db.getConnection()) {
+              PreparedStatement stmt = con.prepareStatement(sql);
+              ResultSet rs = stmt.executeQuery();
 
-          <!-- Sample archived booking 3 -->
+              while (rs.next()) {
+                String status = rs.getString("Status");
+                String badgeClass = "badge-completed";
+                if("Cancelled".equalsIgnoreCase(status)) {
+                  badgeClass = "badge-cancelled";
+                }
+          %>
           <tr>
-            <td>1003</td>
-            <td>Michael Brown</td>
-            <td>#107</td>
-            <td>2023-07-20</td>
-            <td>2023-07-25</td>
-            <td><span class="status-badge badge-cancelled">Cancelled</span></td>
-            <td>2023-07-19</td>
+            <td><%= rs.getInt("BookingID") %></td>
+            <td><%= rs.getString("CustomerName") %></td>
+            <td>#<%= rs.getInt("RoomNumber") %></td>
+            <td><%= rs.getString("CheckInDate") %></td>
+            <td><%= rs.getString("CheckOutDate") %></td>
+            <td><span class="status-badge <%= badgeClass %>"><%= status %></span></td>
           </tr>
-
-          <!-- Sample archived booking 4 -->
+          <%
+            }
+          } catch(Exception e) {
+          %>
           <tr>
-            <td>1004</td>
-            <td>Emily Davis</td>
-            <td>#409</td>
-            <td>2023-08-12</td>
-            <td>2023-08-18</td>
-            <td><span class="status-badge badge-completed">Completed</span></td>
-            <td>2023-08-19</td>
+            <td colspan="6" class="text-center text-danger py-4">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              Error loading booking data. Please try again later.
+            </td>
           </tr>
+          <%
+            }
+          %>
           </tbody>
         </table>
       </div>
@@ -155,7 +160,7 @@
   </div>
 
   <div class="text-center">
-    <a href="employeePage.jsp" class="btn btn-back">
+    <a href="employeePage.jsp" class="btn btn-dark">
       <i class="fas fa-tachometer-alt me-2"></i>Return to Dashboard
     </a>
   </div>

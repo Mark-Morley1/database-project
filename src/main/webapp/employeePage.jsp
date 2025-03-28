@@ -144,10 +144,6 @@
   <a href="homepage.jsp" class="action-btn btn-logout">
     <i class="fas fa-sign-out-alt"></i> Logout
   </a>
-
-  <p class="footer-text">
-    Hotel Management System v2.0 © 2023
-  </p>
 </div>
 
 <!-- Bootstrap JS -->

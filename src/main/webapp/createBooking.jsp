@@ -26,6 +26,7 @@
         roomId = request.getParameter("roomId");
         startDate = request.getParameter("startDate");
         endDate = request.getParameter("endDate");
+        status = request.getParameter("status");
 
         BookingConnection bookingConnection = new BookingConnection();
         bookingSuccess = bookingConnection.createBooking(Integer.parseInt(roomId), Integer.parseInt(customerId), startDate, endDate);
@@ -196,7 +197,10 @@
 
         <div class="form-group">
             <label for="status">Status:</label>
-            <input type="text" class="form-control" id="status" name="status" value="<%= status != null ? status : "Confirmed" %>" required>
+            <select class="form-control" id="status" name="status" required>
+                <option value="Renting" <%= "Renting".equals(status) ? "selected" : "" %>>Renting</option>
+                <option value="Booking" <%= "Booking".equals(status) || status == null ? "selected" : "" %>>Booking</option>
+            </select>
         </div>
 
         <div class="button-group">
