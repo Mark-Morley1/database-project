@@ -38,14 +38,14 @@ public class BookingConnection {
 
                 int rowsAffected = pstmt.executeUpdate();
                 if (rowsAffected > 0) {
-                    System.out.println("Booking added successfully with BookingID: " + newBookingID);
+                    //System.out.println("Booking added successfully with BookingID: " + newBookingID);
                 } else {
-                    System.out.println("Booking insertion failed.");
+                    //System.out.println("Booking insertion failed.");
                 }
             }
         } catch (Exception e) {
             //The room is already saved in booking violates the unique booking constraint
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
         return true;
@@ -68,7 +68,7 @@ public class BookingConnection {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //System.out.println();
         }
 
     }
