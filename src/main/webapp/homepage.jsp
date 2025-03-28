@@ -242,10 +242,6 @@
             <i class="fas fa-sign-in-alt me-2"></i>Login
         </button>
     </form>
-
-    <div class="form-footer">
-        Don't have an account? <a href="#">Contact support</a>
-    </div>
 </div>
 
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
