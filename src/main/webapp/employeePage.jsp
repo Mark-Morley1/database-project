@@ -245,7 +245,7 @@
 
     <div class="action-buttons">
       <a href="createBooking.jsp" class="action-btn btn-create">
-        <i class="fas fa-calendar-plus"></i> Create New Booking
+        <i class="fas fa-calendar-plus"></i> Create New Renting
       </a>
       <a href="viewBookings.jsp" class="action-btn btn-view">
         <i class="fas fa-list-ol"></i> View All Bookings
