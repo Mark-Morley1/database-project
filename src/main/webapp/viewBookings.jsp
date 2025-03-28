@@ -158,6 +158,7 @@
                         <th>Check-in</th>
                         <th>Check-out</th>
                         <th>Status</th>
+                        <th>Change Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -194,6 +195,17 @@
                         <td><%= rs.getString("CheckInDate") %></td>
                         <td><%= rs.getString("CheckOutDate") %></td>
                         <td><span class="status-badge <%= badgeClass %>"><%= status %></span></td>
+
+                        <td>
+                            <form action="" method="post">
+                                <!-- Add hidden fields for BookingID and new status -->
+                                <input type="hidden" name="bookingID" value="<%= rs.getInt("BookingID") %>">
+                                <input type="hidden" name="status" value="Checked In">
+
+                                <button type="submit" class="btn btn-book">Check In</button>
+                            </form>
+                        </td>
+
                     </tr>
                     <%
                         }
@@ -220,6 +232,26 @@
         </a>
     </div>
 </div>
+
+<%@ page import="java.sql.*, com.demo.BookingConnection" %>
+<%
+    if ("POST".equalsIgnoreCase(request.getMethod())) {
+        // Get the bookingID and status from the form
+        String bookingIDStr = request.getParameter("bookingID");
+        String status = "Renting";
+
+        if (bookingIDStr != null) {
+            int bookingID = Integer.parseInt(bookingIDStr);
+
+            // Call the updateBooking method to update the status
+            BookingConnection bookingConnection = new BookingConnection();
+            bookingConnection.updateBooking(bookingID, status);
+
+            response.sendRedirect("viewBookings.jsp");
+        }
+    }
+%>
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

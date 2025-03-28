@@ -1,10 +1,7 @@
 package com.demo;
-import org.postgresql.util.PSQLException;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLIntegrityConstraintViolationException;
 
 public class BookingConnection {
 
@@ -52,6 +49,28 @@ public class BookingConnection {
             return false;
         }
         return true;
+    }
+    public void updateBooking(Integer bookingID, String status) {
+
+        String sql = "UPDATE public.booking SET Status = ? WHERE BookingID = ?";
+
+
+        ConnectionDB db = new ConnectionDB();
+        try (Connection con = db.getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            // Set the parameters for the SQL query
+            stmt.setString(1, status); // Set the new status
+            stmt.setInt(2, bookingID); // Set the booking ID to identify the record to update
+
+            // Execute the update
+            stmt.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
