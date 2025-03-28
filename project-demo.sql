@@ -63,7 +63,7 @@ CREATE TABLE Booking (
                          RoomID INT NOT NULL,
                          StartDate DATE NOT NULL,
                          EndDate DATE NOT NULL,
-                         Status VARCHAR(20) CHECK (Status IN ('Booked', 'Cancelled', 'Completed')) NOT NULL,
+                         Status VARCHAR(20) CHECK (Status IN ('Booked', 'Rented', 'Completed')) NOT NULL,
                          FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID),
                          FOREIGN KEY (RoomID) REFERENCES Room(RoomID)
 );

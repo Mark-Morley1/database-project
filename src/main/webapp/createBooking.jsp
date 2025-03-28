@@ -29,7 +29,12 @@
         status = request.getParameter("status");
 
         BookingConnection bookingConnection = new BookingConnection();
-        bookingSuccess = bookingConnection.createBooking(Integer.parseInt(roomId), Integer.parseInt(customerId), startDate, endDate);
+        try{
+            bookingSuccess = bookingConnection.createBooking(Integer.parseInt(roomId), Integer.parseInt(customerId), startDate, endDate);
+        } catch (Exception e){
+
+        }
+
     }
 %>
 

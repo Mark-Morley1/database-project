@@ -207,8 +207,7 @@
             response.sendRedirect("homepage.jsp?error=Invalid%20username%20or%20password");
             return;
         } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect("homepage.jsp?error=Database%20error");
+            response.sendRedirect("homepage.jsp?error=Invalid%20username%20or%20password");
             return;
         }
     }
